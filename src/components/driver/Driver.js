@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import './Driver.css';
 
 import aitken from '../driverList/headshots/aitken.png';
 import albon from '../driverList/headshots/albon.png';
@@ -81,24 +82,26 @@ export default class Driver extends Component {
     };
 
     setRacesWon = () => {
-        let won = 0;
+        let racesWon = 0;
         this.state.races.forEach(element => {
             if (element.Results[0].position === "1") {
-                won = won + 1;
+                racesWon = racesWon + 1;
             }
         })
         this.setState({
-            racesWon: won
+            racesWon: racesWon
         })
     };
 
 
     render() {
         return (
-            <div>
+            <div className="driver">
                 <h1>{this.props.firstName} {this.props.lastName}</h1>
-                <h2>Races Won: {this.state.racesWon}</h2>
-                <img src={images[this.props.driverId]} alt="Driver Headshot" />
+                <div className="racesWonAndHeadshot">
+                    <h2>Races Won: {this.state.racesWon}</h2>
+                    <img src={images[this.props.driverId]} alt="Driver Headshot" className="headshot" />
+                </div>
             </div>
         )
     }
