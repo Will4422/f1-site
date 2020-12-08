@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import Driver from '../driver/Driver';
+import Driver from '../driver/Driver.js';
+
 
 const axios = require('axios');
 
@@ -37,7 +38,7 @@ export default class DriverList extends Component {
             <div>
                 {this.state.drivers.map(driver =>
                     <Driver
-                        firstName={driver.giveName}
+                        firstName={driver.givenName}
                         lastName={driver.familyName}
                         driverId={driver.driverId}
                     />)
