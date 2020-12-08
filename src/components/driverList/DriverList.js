@@ -17,17 +17,20 @@ export default class DriverList extends Component {
     }
 
     componentDidMount() {
-        axios(config)
-            .then(res => {
-                console.log(res.data.MRData.DriverTable.Drivers)
-                this.setState({
-                    drivers: res.data.MRData.DriverTable.Drivers
-                });
-            })
-            .catch(err => {
-                console.log(err)
-            });
+        this.getDrivers();
     }
+
+    getDrivers = async () => {
+        try {
+            const res = await axios(config);
+            const drivers = res.data.MRData.DriverTable.Drivers;
+            this.setState({
+                drivers
+            });
+        } catch (err) {
+            console.log(err);
+        }
+    };
 
     render() {
         return (
@@ -36,8 +39,9 @@ export default class DriverList extends Component {
                     <Driver
                         firstName={driver.giveName}
                         lastName={driver.familyName}
-                        driverID={driver.driverId}
-                    />)}
+                        driverId={driver.driverId}
+                    />)
+                }
             </div>
         )
     }
